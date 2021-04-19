@@ -33,12 +33,6 @@ Once swap pair is registered, users can swap tokens from BSC to ETH.
 2. Swap service will monitor the `SwapStarted` event and call `fillBSC2ETHSwap` via BSCSwapAgent to transfer corresponding erc20
    tokens to the same address that initiate the swap.
 
-## Generate contracts from templates
-
-```javascript
-npm run generate
-```
-
 ## Test
 
 Run the development network:
