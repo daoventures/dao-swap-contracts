@@ -33,6 +33,20 @@ Once swap pair is registered, users can swap tokens from BSC to ETH.
 2. Swap service will monitor the `SwapStarted` event and call `fillBSC2ETHSwap` via BSCSwapAgent to transfer corresponding erc20
    tokens to the same address that initiate the swap.
 
+## Environment
+
+1. Make a copy of `.env.template` named `.env`
+
+2. Replace the `YOUR_INFURA_KEY` with the Infura API key of yours.
+
+3. Put the private keys in OWNER_PRIVKEY and ADMIN_PRIVKEY fields.
+
+* OWNER_PRIVKEY is the key of the account deploying the smart contracts. This key will be used in backend to call the smart contract.
+* ADMIN_PRIVKEY is the key of the admin account of the proxy contract.
+Please keep the private keys in safe storage.
+
+4. Put the scanner API keys in ETHERSCAN_API_KEY and BSCSCAN_API_KEY fields.
+
 ## Test
 
 Run the development network:

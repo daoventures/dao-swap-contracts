@@ -85,7 +85,7 @@ module.exports = function(deployer, network, accounts) {
             await bscSwap.createSwapPairWithBep20(registerTx.tx, ERC20DVG.address, "DVGToken", "DVG", 18, BEP20DVG.address, {from: swapOwner});
 
             const bep20DVG = await BEP20DVG.deployed();
-            await bep20DVG.addMinter(bscSwap.address, {from: accounts[0]});
+            await bep20DVG.addMinter(bscSwap.address, {from: swapOwner});
 
         } else if (!isBsc) {
             const ethSwapProxy = await ETHSwapAgentUpgradeableProxy.deployed();

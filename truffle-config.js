@@ -26,14 +26,24 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 require('dotenv').config();
 
+const mainnetPrivateKeys = [
+  process.env.MAINNET_SWAP_OWNER_PRIVKEY,
+  process.env.MAINNET_PROXY_ADMIN_PRIVKEY,
+];
+
 const ropstenPrivateKeys = [
   process.env.ROPSTEN_SWAP_OWNER_PRIVKEY,
   process.env.ROPSTEN_PROXY_ADMIN_PRIVKEY,
 ];
 
+const bscMainnetPrivateKeys = [
+  process.env.BSC_MAINNET_SWAP_OWNER_PRIVKEY,
+  process.env.BSC_MAINNET_PROXY_ADMIN_PRIVKEY,
+];
+
 const bscTestnetPrivateKeys = [
-  process.env.ROPSTEN_SWAP_OWNER_PRIVKEY,
-  process.env.ROPSTEN_PROXY_ADMIN_PRIVKEY,
+  process.env.BSC_TESTNET_SWAP_OWNER_PRIVKEY,
+  process.env.BSC_TESTNET_PROXY_ADMIN_PRIVKEY,
 ];
 
 module.exports = {
@@ -72,6 +82,15 @@ module.exports = {
 
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
+    mainnet: {
+      provider: () => new HDWalletProvider(mainnetPrivateKeys, process.env.MAINNET_URL, 0, 2), //start at address_index 0 and load both addresses
+      network_id: 3,       // Ropsten's id
+      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      confirmations: 1,    // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    },
+
     ropsten: {
       provider: () => new HDWalletProvider(ropstenPrivateKeys, process.env.ROPSTEN_URL, 0, 2), //start at address_index 0 and load both addresses
       network_id: 3,       // Ropsten's id
@@ -81,13 +100,21 @@ module.exports = {
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
 
+    bscmainnet: {
+      provider: () => new HDWalletProvider(bscMainnetPrivateKeys, process.env.BSC_MAINNET_URL, 0, 2), //start at address_index 0 and load both addresses
+      network_id: 97,
+      timeoutBlocks: 200,
+      confirmations: 1,
+      production: true    // Treats this network as if it was a public net. (default: false)
+    },
+
     bsctestnet: {
       provider: () => new HDWalletProvider(bscTestnetPrivateKeys, process.env.BSC_TESTNET_URL, 0, 2), //start at address_index 0 and load both addresses
       network_id: 97,
       timeoutBlocks: 200,
       confirmations: 1,
       production: true    // Treats this network as if it was a public net. (default: false)
-    }
+    },
 
     // Useful for private networks
     // private: {
