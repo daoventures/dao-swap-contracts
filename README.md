@@ -1,9 +1,5 @@
 # ETH BSC Swap Contracts
 
-## Security Report
-
-[here](SecurityAssessment.pdf)
-
 ## Overview
 ETH BSC Swap Contracts are responsible for registering swap pairs and swapping assets between ETH and BSC.
 
@@ -43,6 +39,7 @@ Once swap pair is registered, users can swap tokens from BSC to ETH.
 
 * OWNER_PRIVKEY is the key of the account deploying the smart contracts. This key will be used in backend to call the smart contract.
 * ADMIN_PRIVKEY is the key of the admin account of the proxy contract.
+
 Please keep the private keys in safe storage.
 
 4. Put the scanner API keys in ETHERSCAN_API_KEY and BSCSCAN_API_KEY fields.
