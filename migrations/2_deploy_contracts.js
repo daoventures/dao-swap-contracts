@@ -58,7 +58,7 @@ module.exports = function(deployer, network, accounts) {
             await deployer.deploy(BEP20TokenImplementation);
             await deployer.deploy(BSCSwapAgentImpl);
             const bscSwap = await BSCSwapAgentImpl.deployed()
-            const initBscwapData = bscSwap.contract.methods.initialize(BEP20TokenImplementation.address, "10000000000000000", swapOwner, bep20ProxyAdmin).encodeABI();
+            const initBscwapData = bscSwap.contract.methods.initialize(BEP20TokenImplementation.address, "100000000000000000", swapOwner, bep20ProxyAdmin).encodeABI();
             await deployer.deploy(BSCSwapAgentUpgradeableProxy, BSCSwapAgentImpl.address, proxyAdmin, initBscwapData);
         }
 
@@ -68,7 +68,7 @@ module.exports = function(deployer, network, accounts) {
         if (isDevelopment || !isBsc) {
             await deployer.deploy(ETHSwapAgentImpl);
             const ethSwap = await ETHSwapAgentImpl.deployed();
-            const initEthSwapData = ethSwap.contract.methods.initialize("10000000", swapOwner).encodeABI();
+            const initEthSwapData = ethSwap.contract.methods.initialize("1000000000000000", swapOwner).encodeABI();
             await deployer.deploy(ETHSwapAgentUpgradeableProxy, ETHSwapAgentImpl.address, proxyAdmin, initEthSwapData);
         }
 
